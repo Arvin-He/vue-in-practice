@@ -1,0 +1,8 @@
+logs/
+.idea/
+node_modules/
+.vscode/
+__pycache__/
+*.pyc
+*.pyd
+*.log
