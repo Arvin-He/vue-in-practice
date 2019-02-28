@@ -12,7 +12,7 @@
       <button class="btn btn-warning btn-xs pull-right" v-on:click="deleteTodo(index, todo)">Delete</button>
     </li>
   </ul>
-  <todo-form :todos="todos"></todo-form>
+  <todo-form></todo-form>
 </div>
 </template>
 
@@ -21,7 +21,11 @@ import TodoForm from "./TodoForm";
 
 export default {
   name: "todos",
-  props: ["todos"],
+  computed: {
+    todos() {
+      return this.$store.state.todos
+    }
+  },
   methods: {
     deleteTodo(index, todo) {
       this.axios.delete('/api/todo/' + todo.id + '/delete').then(response => {

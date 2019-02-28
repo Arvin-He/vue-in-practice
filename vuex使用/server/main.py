@@ -64,10 +64,6 @@ def create_logger(logname='logs.log', logconsole=True, level=logging.INFO):
 class TodosHandler(web.RequestHandler):
 
     def get(self):
-        self.set_header('Access-Control-Allow-Origin', '*')
-        self.set_header('Access-Control-Allow-Headers', 'x-requested-with')
-        self.set_header('Access-Control-Allow-Methods',
-                        'POST, GET, PUT, DELETE')
         data = {"data": [{"id": 1, "title": "Learn Vue.js", "completed": False},
                          {"id": 2, "title": "Learn React.js", "completed": False}]}
         self.write(data)
@@ -77,9 +73,6 @@ class TodosHandler(web.RequestHandler):
 class TodoHandler(web.RequestHandler):
 
     def get(self):
-        self.set_header('Access-Control-Allow-Origin', '*')
-        self.set_header('Access-Control-Allow-Headers', 'x-requested-with')
-        self.set_header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE')
         index = self.request.uri.split('/')[-1]
         data = [{"id": 1, "title": "Learn Vue.js", "completed": False},
                 {"id": 2, "title": "Learn React.js", "completed": False}]

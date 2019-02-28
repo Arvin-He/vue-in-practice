@@ -1,32 +1,19 @@
 <template>
   <div id="app">
-    <!-- <todos :todos="todos"></todos> -->
-    <!-- <todo-form :todos="todos"></todo-form> -->
-    <router-view :todos="todos"></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
-// import Todos from './components/Todos'
-// import TodoForm from './components/TodoForm'
 export default {
   name: 'App',
-  data() {
-    return {todos: [
-      // {id:1,title:"Learn Vue.js", completed:false}
-    ]
-    }
-  },
   mounted() {
-    this.axios.get('/api/todos').then(response => {
-      console.log(response.data["data"])
-      this.todos = response.data["data"]
-    })
+    this.$store.dispatch('getTodos')
   },
   computed: {
     todosCount() {
-      return this.todos.length;
+      return this.$store.state.todos.length;
     }
   },
   components: {

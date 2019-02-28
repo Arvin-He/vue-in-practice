@@ -29,12 +29,17 @@ const store = new Vuex.Store({
   },
   // mutations存放方法的结合,负责更新state中的数据
   mutations: {
-    increment (state) {
-      state.count++
+    get_todos_list (state, todos) {
+      state.todos = todos
     }
   },
   // actions用于和后台打交道,负责从后端获取数据
   actions: {
+    getTodos(store) {
+      Vue.axios.get('/api/todos').then(response => {
+        store.commit('get_todos_list', response.data)
+      })
+    }
   }
 })
 
@@ -43,5 +48,6 @@ new Vue({
   el: '#app',
   components: { App },
   template: '<App/>',
-  router
+  router,
+  store
 })
